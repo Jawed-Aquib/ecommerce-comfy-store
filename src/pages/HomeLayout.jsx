@@ -1,10 +1,15 @@
-import { Outlet } from "react-router-dom";
-
+import { Outlet, useNavigation } from "react-router-dom";
+import { Header, Navbar, Loading } from "../components";
 const   HomeLayout = () => {
+  const navigation = useNavigation()
+  const isPageLoading = navigation.state === 'loading'
     return <>
-    <nav>
-      <span className="text-4xl text-primary"> Comfy</span>
-    </nav>
+    <Header/>
+    <Navbar/>
+    <section className="align-element py-20">
+    {isPageLoading ? <Loading/> : <Outlet/>}
+    </section>
+   
     </>
   };
   export default HomeLayout;
